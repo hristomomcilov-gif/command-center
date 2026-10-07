@@ -1,0 +1,112 @@
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #e7efe8;
+  pointer-events: none;
+}
+
+.atmosphere-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 32% at 68% 18%, rgba(255, 214, 168, 0.95), transparent 68%),
+    linear-gradient(180deg, #f6d8b6 0%, #f4e6d4 22%, #d5e6ef 52%, #c5d8cc 78%, #b7cbb8 100%);
+}
+
+.atm-sun {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  left: 58%;
+  top: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 250, 242, 0.95) 0 18%, rgba(255, 220, 176, 0.55) 36%, transparent 70%);
+  filter: blur(2px);
+}
+
+.atm-dusk {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 36% 28% at 72% 22%, rgba(255, 186, 132, 0.45), transparent 70%),
+    linear-gradient(180deg, rgba(18, 32, 54, 0.2), rgba(16, 28, 48, 0.72));
+}
+
+.atm-land {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.atm-mist {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 18%;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(255, 250, 246, 0.45), transparent 70%);
+  animation: mist 90s ease-in-out infinite alternate;
+}
+
+.atm-grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+}
+
+html[data-period="afternoon"] .atmosphere-sky {
+  background:
+    radial-gradient(ellipse 36% 26% at 62% 12%, rgba(255, 236, 196, 0.9), transparent 68%),
+    linear-gradient(180deg, #f3e2c8 0%, #d9ebf4 40%, #c5ddd4 100%);
+}
+
+html[data-period="afternoon"] .atm-sun {
+  transform: translate(-40px, -24px);
+}
+
+html[data-period="evening"] .atmosphere-sky {
+  filter: saturate(0.8) brightness(0.72);
+}
+
+html[data-period="evening"] .atm-dusk {
+  opacity: 1;
+}
+
+html[data-period="evening"] .atm-sun {
+  transform: translate(70px, 36px);
+  opacity: 0.75;
+}
+
+html[data-weather="cloudy"] .atm-sun,
+html[data-weather="fog"] .atm-sun {
+  opacity: 0.35;
+}
+
+html[data-weather="rain"] .atmosphere-sky,
+html[data-weather="storm"] .atmosphere-sky {
+  filter: saturate(0.72) brightness(0.92);
+}
+
+html[data-weather="rain"] .atm-sun,
+html[data-weather="storm"] .atm-sun {
+  opacity: 0.2;
+}
+
+html[data-weather="snow"] .atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(236, 244, 248, 0.18));
+}
+
+@keyframes mist {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-2.5%, 6px, 0); }
+}
