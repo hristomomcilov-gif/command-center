@@ -1,7 +1,7 @@
-import { QuietPage } from "@/components/shell/QuietPage";
+import { TeamulateDashboard } from "@/components/teamulate/TeamulateDashboard";
 
 export const metadata = { title: "Teamulate" };
 
 export default function TeamulatePage() {
-  return <QuietPage title="Teamulate" lede="The work can wait here until you open it." />;
+  return <TeamulateDashboard />;
 }

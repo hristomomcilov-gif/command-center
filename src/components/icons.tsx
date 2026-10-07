@@ -24,7 +24,13 @@ export type IconName =
   | "doc"
   | "star"
   | "leaf"
-  | "arrow";
+  | "arrow"
+  | "search"
+  | "bell"
+  | "refresh"
+  | "alert"
+  | "plus"
+  | "chart";
 
 const glyphs: Record<IconName, ReactNode> = {
   home: (
@@ -160,6 +166,37 @@ const glyphs: Record<IconName, ReactNode> = {
     </>
   ),
   arrow: <path d="M6 12h12M13 7l5 5-5 5" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="6" />
+      <path d="m16 16 4 4" />
+    </>
+  ),
+  bell: (
+    <>
+      <path d="M6.2 16.2h11.6l-1.2-2V11a4.6 4.6 0 0 0-9.2 0v3.2z" />
+      <path d="M10 16.4a2 2 0 0 0 4 0" />
+    </>
+  ),
+  refresh: (
+    <>
+      <path d="M19.2 12a7.2 7.2 0 1 1-2.1-5" />
+      <path d="M19.2 4.6V9h-4.4" />
+    </>
+  ),
+  alert: (
+    <>
+      <path d="M12 4.2 20.5 19H3.5z" />
+      <path d="M12 10v4.2M12 16.8h.01" />
+    </>
+  ),
+  plus: <path d="M12 6v12M6 12h12" />,
+  chart: (
+    <>
+      <path d="M4.5 19h15" />
+      <path d="M7.5 16v-4M12 16V8M16.5 16v-6" />
+    </>
+  ),
 };
 
 export function Icon({ name, size = 18 }: { name: IconName; size?: number }) {

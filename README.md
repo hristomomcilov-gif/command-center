@@ -1,6 +1,6 @@
 # Teamulate Command Center
 
-A calm, personal start to the day. Home is a quiet briefing — not an analytics dashboard.
+Home is a calm, personal start to the day. Teamulate is the operating dashboard for acquisition, content, and what needs a person.
 
 ```bash
 npm install

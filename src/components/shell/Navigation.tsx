@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Icon, Mark } from "@/components/icons";
 import { isCurrent, navGroups } from "@/components/shell/nav";
 
@@ -43,7 +43,14 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function Navigation() {
+  const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (pathname.startsWith("/teamulate")) root.dataset.surface = "ops";
+    else delete root.dataset.surface;
+  }, [pathname]);
 
   return (
     <div className="nav-root">
