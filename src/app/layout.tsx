@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { headers } from "next/headers";
 import { Inter, Newsreader } from "next/font/google";
 import { AppShell } from "@/components/shell/AppShell";
 import { homeProfile } from "@/lib/home/sources/temporary-state";
@@ -33,7 +32,6 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const now = new Date();
   const weather = await getWeather();
-  const pathname = (await headers()).get("x-pathname") ?? "";
 
   return (
     <html
@@ -42,7 +40,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       data-period={dayPeriod(now, homeProfile.timezone)}
       data-weekend={isWeekend(now, homeProfile.timezone) ? "true" : "false"}
       data-weather={weather?.kind ?? "clear"}
-      data-surface={pathname.startsWith("/teamulate") ? "ops" : undefined}
+      data-surface="ops"
     >
       <body>
         <a className="skip" href="#content">

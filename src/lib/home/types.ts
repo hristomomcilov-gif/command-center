@@ -66,6 +66,7 @@ export type PrioritySource = {
   importance: "focus" | "normal";
   dueOn: string | null;
   completed: boolean;
+  steps?: string[];
 };
 
 export type EmailSymbol = "person" | "calendar" | "document";
@@ -146,6 +147,7 @@ export type HomePrimary = {
   id: string;
   title: string;
   context: string;
+  steps: string[];
   href: string;
   projectName: string | null;
 };

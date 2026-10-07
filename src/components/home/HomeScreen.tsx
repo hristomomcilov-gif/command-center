@@ -88,16 +88,26 @@ function StartHere({ view }: { view: HomeViewModel }) {
       </div>
       {view.primary ? (
         <Link className="start-body" href={view.primary.href}>
-          <span className="doc" aria-hidden="true">
-            <Icon name="doc" />
+          <span className="start-top">
+            <span className="doc" aria-hidden="true">
+              <Icon name="doc" />
+            </span>
+            <span className="start-copy">
+              {view.primary.projectName ? <span className="kicker">{view.primary.projectName}</span> : null}
+              <span className="task-title">{view.primary.title}</span>
+            </span>
+            <span className="go" aria-hidden="true">
+              <Icon name="chevron" size={16} />
+            </span>
           </span>
-          <span className="start-copy">
-            <span className="task-title">{view.primary.title}</span>
-            <span className="task-context">{view.primary.context}</span>
-          </span>
-          <span className="go" aria-hidden="true">
-            <Icon name="chevron" size={16} />
-          </span>
+          <span className="task-context">{view.primary.context}</span>
+          {view.primary.steps.length > 0 ? (
+            <ol className="start-steps">
+              {view.primary.steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          ) : null}
         </Link>
       ) : (
         <p className="empty">{view.empty.primary}</p>

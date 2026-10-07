@@ -2,8 +2,8 @@
   max-width: 720px;
   padding: 22px 22px 36px;
   border-radius: 28px;
-  background: rgba(255, 251, 246, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(10, 18, 34, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
 }
@@ -68,7 +68,7 @@
 .quiet-note {
   display: block;
   padding: 14px 2px;
-  border-top: 1px solid rgba(29, 39, 50, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
 }
 
@@ -105,7 +105,7 @@
 .meta-line a {
   color: var(--ink-soft);
   text-decoration: none;
-  border-bottom: 1px solid rgba(29, 39, 50, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .retry {
@@ -113,7 +113,7 @@
   padding: 10px 16px;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 

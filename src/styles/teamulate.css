@@ -1,7 +1,5 @@
 /*
-  Teamulate operating dashboard. Home keeps the warm paper surface.
-  This palette is scoped to the ops surface so the two rooms can sit
-  in the same shell.
+  Dark glass surface shared by the shell, Home, and the Teamulate dashboard.
 */
 
 html[data-surface="ops"] {
