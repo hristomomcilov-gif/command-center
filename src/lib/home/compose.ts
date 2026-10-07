@@ -277,6 +277,7 @@ export function composeHomeView(sources: HomeSources, now: Date): HomeViewModel 
           id: focus.primary.id,
           title: focus.primary.title,
           context: focus.primary.context ?? DEFAULT_FOCUS_CONTEXT,
+          steps: focus.primary.steps ?? [],
           href: focus.primary.href,
           projectName: focus.primary.projectName,
         }
