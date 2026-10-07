@@ -1,6 +1,6 @@
 import { cache } from "react";
-import { dateKey } from "../time";
-import { formatWallClock } from "../time";
+import { upcomingHours } from "../forecast";
+import { dateKey, formatWallClock } from "../time";
 import type { WeatherSnapshot } from "../types";
 import { weatherKindFromCode, weatherLabel } from "../weather-codes";
 import { homeProfile } from "./temporary-state";
@@ -10,6 +10,7 @@ type OpenMeteoResponse = {
   hourly?: {
     time?: string[];
     temperature_2m?: number[];
+    weather_code?: number[];
     precipitation_probability?: number[];
   };
   daily?: { sunset?: string[] };
@@ -30,7 +31,7 @@ export const getWeather = cache(async (): Promise<WeatherSnapshot | null> => {
   url.searchParams.set("latitude", String(latitude));
   url.searchParams.set("longitude", String(longitude));
   url.searchParams.set("current", "temperature_2m,weather_code");
-  url.searchParams.set("hourly", "temperature_2m,precipitation_probability");
+  url.searchParams.set("hourly", "temperature_2m,weather_code,precipitation_probability");
   url.searchParams.set("daily", "sunset");
   url.searchParams.set("timezone", timezone);
   url.searchParams.set("forecast_days", "2");
@@ -49,7 +50,9 @@ export const getWeather = cache(async (): Promise<WeatherSnapshot | null> => {
     const today = dateKey(new Date(), timezone);
     const times = body.hourly?.time ?? [];
     const temps = body.hourly?.temperature_2m ?? [];
+    const codes = body.hourly?.weather_code ?? [];
     const rain = body.hourly?.precipitation_probability ?? [];
+    const observedAt = new Date();
     const eveningIndex = times.findIndex((stamp) => stamp.startsWith(`${today}T19:`));
     const eveningTemperatureC = eveningIndex >= 0 ? (temps[eveningIndex] ?? null) : null;
     const precipitationLater = times.some((stamp, index) => {
@@ -67,6 +70,7 @@ export const getWeather = cache(async (): Promise<WeatherSnapshot | null> => {
       sunsetLabel: sunset ? formatWallClock(sunset) : null,
       eveningTemperatureC,
       precipitationLater,
+      hours: upcomingHours(times, temps, codes, rain, observedAt, timezone),
     };
   } catch {
     return null;

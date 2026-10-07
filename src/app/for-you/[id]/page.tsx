@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { NewsArt } from "@/components/home/NewsArt";
+import { StoryImage } from "@/components/home/NewsCard";
 import { QuietPage } from "@/components/shell/QuietPage";
 import { composeHomeView } from "@/lib/home/compose";
 import { loadHomeSources } from "@/lib/home/sources/load-home-sources";
@@ -29,7 +29,7 @@ export default async function StoryPage({ params }: { params: Promise<{ id: stri
     >
       <div className="story-page">
         <div className="story-art">
-          <NewsArt category={story.category} />
+          <StoryImage image={story.image} category={story.category} />
         </div>
       </div>
       {story.source || story.publishedLabel ? (

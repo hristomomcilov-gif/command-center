@@ -21,6 +21,13 @@ export type EmailKind =
   | "receipt"
   | "noise";
 
+export type WeatherHour = {
+  at: string;
+  temperatureC: number;
+  kind: WeatherKind;
+  precipitationProbability: number;
+};
+
 export type WeatherSnapshot = {
   temperatureC: number;
   kind: WeatherKind;
@@ -28,6 +35,7 @@ export type WeatherSnapshot = {
   sunsetLabel: string | null;
   eveningTemperatureC: number | null;
   precipitationLater: boolean;
+  hours: WeatherHour[];
 };
 
 export type ProfileSource = {
@@ -82,6 +90,7 @@ export type NewsSource = {
   publishedAt: string | null;
   href: string;
   topics: string[];
+  image?: string | null;
 };
 
 export type AttentionSource = {
@@ -149,6 +158,7 @@ export type HomeNewsItem = {
   source: string | null;
   publishedLabel: string | null;
   href: string;
+  image: string | null;
 };
 
 export type HomeEmailItem = {
@@ -169,11 +179,24 @@ export type HomeAttention = {
   href: string | null;
 };
 
+export type HomeWeatherHour = {
+  id: string;
+  shortLabel: string;
+  timeLabel: string;
+  temperatureC: number;
+  temperatureLabel: string;
+  kind: WeatherKind;
+  condition: string;
+  rainLabel: string | null;
+};
+
 export type HomeWeather = {
   temperatureLabel: string;
   summary: string;
   kind: WeatherKind;
+  condition: string;
   locationLabel: string;
+  outlook: HomeWeatherHour[];
 };
 
 export type HomeViewModel = {

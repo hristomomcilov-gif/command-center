@@ -7,7 +7,8 @@ import {
   laterLine,
   thoughtFor,
 } from "./copy";
-import { eveningNote } from "./weather-codes";
+import { outlookFrom } from "./forecast";
+import { eveningNote, weatherLabel } from "./weather-codes";
 import { HOME_LIMITS } from "./limits";
 import {
   atLocalTime,
@@ -123,6 +124,7 @@ function selectNews(items: NewsSource[], topics: string[], now: Date, timeZone: 
     source: item.source,
     publishedLabel: item.publishedAt ? publishedLabel(item.publishedAt, now, timeZone) : null,
     href: item.href,
+    image: item.image ?? null,
   }));
 }
 
@@ -261,7 +263,13 @@ export function composeHomeView(sources: HomeSources, now: Date): HomeViewModel 
             .filter(Boolean)
             .join(" · "),
           kind: weather.kind,
+          condition: weatherLabel(weather.kind),
           locationLabel,
+          outlook: outlookFrom(weather.hours, {
+            temperatureC: weather.temperatureC,
+            kind: weather.kind,
+            rainLater: weather.precipitationLater,
+          }),
         }
       : null,
     primary: focus.primary
