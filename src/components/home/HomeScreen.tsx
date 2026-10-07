@@ -7,6 +7,7 @@ import { EventList } from "@/components/home/EventList";
 import { GlanceList } from "@/components/home/GlanceList";
 import { NewsCard } from "@/components/home/NewsCard";
 import { ThreeThingsCard } from "@/components/home/ThreeThingsCard";
+import { WeatherOutlook } from "@/components/home/WeatherOutlook";
 import { HeroScene } from "@/components/shell/scenes";
 import { composeHomeView } from "@/lib/home/compose";
 import type { HomeClearWindow, HomeSources, HomeViewModel } from "@/lib/home/types";
@@ -117,12 +118,20 @@ function Today({ view }: { view: HomeViewModel }) {
           <Icon name="chevron" size={16} />
         </Link>
       </div>
-      {view.events.length === 0 ? (
+      {view.events.length === 0 && !view.weather ? (
         <p className="empty">{view.empty.calendar}</p>
       ) : (
         <div className="today-body">
-          <EventList events={view.events} />
-          {view.clearWindow ? <ClearWindow block={view.clearWindow} /> : null}
+          {view.events.length === 0 ? (
+            <p className="empty">{view.empty.calendar}</p>
+          ) : (
+            <EventList events={view.events} />
+          )}
+          {view.weather ? (
+            <WeatherOutlook weather={view.weather} clearWindow={view.clearWindow} />
+          ) : view.clearWindow ? (
+            <ClearWindow block={view.clearWindow} />
+          ) : null}
         </div>
       )}
     </section>

@@ -13,7 +13,12 @@
   border: 1px solid rgba(255, 255, 255, 0.38);
   border-radius: 30px;
   box-shadow: var(--shadow);
-  color: var(--ink);
+  color: #f7f3ee;
+  background: url("/backgrounds/teamulate.jpg") center 18% / cover no-repeat;
+}
+
+.hero-scene {
+  display: none;
 }
 
 .hero-scene,
@@ -26,11 +31,13 @@
 }
 
 .hero-scrim {
-  background: linear-gradient(90deg, rgba(255, 248, 240, 0.62) 0%, rgba(255, 248, 240, 0.28) 46%, rgba(255, 248, 240, 0.02) 72%);
+  background:
+    linear-gradient(180deg, rgba(12, 18, 28, 0.46) 0%, rgba(12, 18, 28, 0.16) 48%, rgba(12, 18, 28, 0.34) 100%),
+    linear-gradient(90deg, rgba(12, 18, 28, 0.42), rgba(12, 18, 28, 0.05) 72%);
 }
 
 .hero-veil {
-  background: linear-gradient(180deg, rgba(255, 248, 240, 0.08), transparent 42%);
+  background: linear-gradient(180deg, rgba(12, 18, 28, 0.08), transparent 42%);
 }
 
 .hero-mist {
@@ -74,7 +81,7 @@
 
 .hero-date {
   margin: 8px 0 0;
-  color: var(--ink-soft);
+  color: rgba(247, 243, 238, 0.9);
   font-size: 1.05rem;
 }
 
@@ -83,7 +90,7 @@
   align-items: center;
   gap: 8px;
   margin: 8px 0 0;
-  color: var(--ink-soft);
+  color: rgba(247, 243, 238, 0.9);
   font-size: 0.98rem;
 }
 
@@ -94,6 +101,7 @@
   letter-spacing: -0.045em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 18px rgba(8, 12, 20, 0.45);
 }
 
 .hero-line {
@@ -105,7 +113,7 @@
   font-weight: 450;
   font-size: 1.28rem;
   line-height: 1.35;
-  color: var(--ink-soft);
+  color: rgba(247, 243, 238, 0.92);
 }
 
 html[data-period="evening"] .hero {
@@ -340,6 +348,111 @@ html[data-weather="snow"] .hero-veil {
   color: #d7a15a;
 }
 
+.outlook {
+  flex: none;
+  width: 210px;
+  padding: 12px 12px 10px;
+  border-radius: 16px;
+  background: rgba(255, 252, 248, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+}
+
+.outlook-now {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c48a3a;
+}
+
+.outlook-temp,
+.outlook-condition,
+.outlook-rain,
+.outlook-open {
+  margin: 0;
+}
+
+.outlook-temp {
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 620;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.outlook-temp span,
+.outlook-condition,
+.outlook-rain,
+.outlook-open {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 560;
+}
+
+.outlook-temp span {
+  margin-left: 6px;
+}
+
+.outlook-condition {
+  margin-top: 3px;
+}
+
+.outlook-hours {
+  display: flex;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.outlook-hours button {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.outlook-hours button.is-selected {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+}
+
+.outlook-track {
+  display: flex;
+  align-items: flex-end;
+  height: 36px;
+  padding: 3px 3px 0;
+}
+
+.outlook-bar {
+  display: block;
+  width: 100%;
+  border-radius: 4px 4px 2px 2px;
+  background: #e2b15a;
+}
+
+.bar-clear { background: #e2b15a; }
+.bar-partly-cloudy { background: #d7a56a; }
+.bar-cloudy,
+.bar-fog { background: #9aabba; }
+.bar-rain,
+.bar-storm { background: #6f93b8; }
+.bar-snow { background: #d5e6ee; }
+
+.outlook-hour {
+  display: block;
+  padding: 2px 0 4px;
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.outlook-rain,
+.outlook-open {
+  margin-top: 6px;
+}
+
 .news-grid {
   display: grid;
   gap: 12px;
@@ -359,11 +472,16 @@ html[data-weather="snow"] .hero-veil {
 }
 
 .story-art {
+  position: relative;
   display: block;
   width: 104px;
   height: 84px;
   overflow: hidden;
   border-radius: 14px;
+}
+
+.story-art img {
+  object-fit: cover;
 }
 
 .news-art {
@@ -631,14 +749,18 @@ html[data-weather="snow"] .hero-veil {
   .thing-list { padding-right: 0; }
 }
 
-@container (max-width: 400px) {
+@container (max-width: 520px) {
   .today-body {
     flex-direction: column;
     align-items: stretch;
   }
 
+  .outlook,
   .clear-panel {
     width: 100%;
+  }
+
+  .clear-panel {
     min-height: 0;
     display: flex;
     align-items: center;
@@ -743,7 +865,8 @@ html[data-weather="snow"] .hero-veil {
   .hero-line { padding-top: 16px; font-size: 1.16rem; }
 
   .today-body { align-items: stretch; }
-  .clear-panel { width: 132px; }
+  .clear-panel,
+  .outlook { width: 100%; }
 
   .thought {
     grid-template-columns: 1fr;
@@ -757,7 +880,8 @@ html[data-weather="snow"] .hero-veil {
 
 @media (max-width: 520px) {
   .today-body { flex-direction: column; }
-  .clear-panel { width: 100%; }
+  .clear-panel,
+  .outlook { width: 100%; }
   .story { grid-template-columns: 84px minmax(0, 1fr) auto; }
   .story-art { width: 84px; height: 72px; }
 }

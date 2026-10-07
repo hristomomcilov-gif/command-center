@@ -229,6 +229,7 @@ export const newsRecords: NewsSource[] = [
     publishedAt: null,
     href: "/for-you/agent-workflow",
     topics: ["ai", "agents"],
+    image: "/news/agent-workflow.jpg",
   },
   {
     id: "fsd-testing",
@@ -239,6 +240,7 @@ export const newsRecords: NewsSource[] = [
     publishedAt: null,
     href: "/for-you/fsd-testing",
     topics: ["autonomy"],
+    image: "/news/fsd-testing.jpg",
   },
   {
     id: "starship",
@@ -249,6 +251,7 @@ export const newsRecords: NewsSource[] = [
     publishedAt: null,
     href: "/for-you/starship",
     topics: ["space"],
+    image: "/news/starship.jpg",
   },
   {
     id: "agent-workflow-repeat",

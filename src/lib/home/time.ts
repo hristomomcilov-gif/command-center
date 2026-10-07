@@ -119,6 +119,12 @@ export function formatRelative(from: Date, now: Date): string {
   return `${days}d ago`;
 }
 
+/** Hour from an API local timestamp, as 0–23, without shifting zones. */
+export function hourFromStamp(isoLocal: string): number {
+  const hour = Number((isoLocal.split("T")[1] ?? "").slice(0, 2));
+  return Number.isNaN(hour) ? 0 : hour;
+}
+
 /** Format an API local timestamp such as 2026-10-07T18:48 without shifting zones. */
 export function formatWallClock(isoLocal: string): string {
   const time = isoLocal.split("T")[1] ?? "";

@@ -62,6 +62,7 @@ function sources(now: Date, overrides: Partial<HomeSources> = {}): HomeSources {
       sunsetLabel: "6:48 PM",
       eveningTemperatureC: 5,
       precipitationLater: false,
+      hours: [],
     },
     events: [
       event(now, "appointment", "Appointment", 9, 30, 45, "#6f93c7"),

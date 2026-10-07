@@ -1,6 +1,11 @@
 .quiet {
   max-width: 720px;
-  padding: 18px 8px 40px;
+  padding: 22px 22px 36px;
+  border-radius: 28px;
+  background: rgba(255, 251, 246, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
 }
 
 .quiet h1 {
@@ -19,7 +24,7 @@
 }
 
 .lede {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   max-width: 38rem;
   color: var(--ink-soft);
   font-family: var(--serif);
@@ -84,8 +89,9 @@
 }
 
 .story-page .story-art {
-  width: min(100%, 420px);
-  height: 220px;
+  position: relative;
+  width: min(100%, 640px);
+  height: 280px;
   margin-top: 22px;
   border-radius: 22px;
 }

@@ -3,8 +3,19 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: #e7efe8;
+  background:
+    linear-gradient(180deg, rgba(18, 24, 32, 0.08) 0%, rgba(255, 246, 236, 0.12) 42%, rgba(226, 220, 208, 0.28) 100%),
+    url("/backgrounds/teamulate.jpg") center 28% / cover no-repeat;
+  background-color: #243044;
   pointer-events: none;
+}
+
+.atmosphere-sky,
+.atm-sun,
+.atm-land,
+.atm-mist,
+.atm-grain {
+  display: none;
 }
 
 .atmosphere-sky {
@@ -76,7 +87,7 @@ html[data-period="evening"] .atmosphere-sky {
 }
 
 html[data-period="evening"] .atm-dusk {
-  opacity: 1;
+  opacity: 0.38;
 }
 
 html[data-period="evening"] .atm-sun {
