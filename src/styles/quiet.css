@@ -1,0 +1,122 @@
+.quiet {
+  max-width: 720px;
+  padding: 18px 8px 40px;
+}
+
+.quiet h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.quiet-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 620;
+}
+
+.lede {
+  margin: 12px 0 0;
+  max-width: 38rem;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 560;
+  text-decoration: none;
+}
+
+.back svg {
+  transform: rotate(180deg);
+}
+
+.quiet .news-grid,
+.quiet .event-list,
+.quiet .glance-list {
+  margin-top: 22px;
+}
+
+.quiet .news-grid {
+  grid-template-columns: 1fr;
+}
+
+.quiet-list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.quiet-list a,
+.quiet-note {
+  display: block;
+  padding: 14px 2px;
+  border-top: 1px solid rgba(29, 39, 50, 0.08);
+  text-decoration: none;
+}
+
+.quiet-list a strong,
+.quiet-note strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+}
+
+.quiet-list a span,
+.quiet-note span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.story-page .story-art {
+  width: min(100%, 420px);
+  height: 220px;
+  margin-top: 22px;
+  border-radius: 22px;
+}
+
+.meta-line {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.meta-line a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(29, 39, 50, 0.18);
+}
+
+.retry {
+  margin-top: 18px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.skeleton {
+  min-height: 220px;
+  border-radius: 30px;
+  background: rgba(255, 251, 246, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.skeleton-card { min-height: 168px; }
+.skeleton-short { min-height: 92px; }
