@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useId, useRef, useState } from "react";
+import { FormEvent, useEffect, useId, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { RankBars, Sparkline, TrafficChart } from "@/components/teamulate/charts";
 import {
@@ -68,6 +68,10 @@ export function TeamulateDashboard() {
   const [draft, setDraft] = useState("");
   const [topicTitle, setTopicTitle] = useState("");
   const [messages, setMessages] = useState<{ question: string; answer: string }[]>([]);
+  const [chatOpen, setChatOpen] = useState(false);
+  const chatInput = useRef<HTMLInputElement>(null);
+  const chatLauncher = useRef<HTMLButtonElement>(null);
+  const chatThread = useRef<HTMLDivElement>(null);
 
   const needle = query.trim().toLowerCase();
   const visibleTopics = rows.filter((topic) => !needle || topic.title.toLowerCase().includes(needle));
@@ -104,6 +108,31 @@ export function TeamulateDashboard() {
     event.preventDefault();
     ask(draft);
   }
+
+  function openChat() {
+    setChatOpen(true);
+  }
+
+  function closeChat() {
+    setChatOpen(false);
+    chatLauncher.current?.focus();
+  }
+
+  useEffect(() => {
+    if (!chatOpen) return;
+    chatInput.current?.focus();
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") closeChat();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [chatOpen]);
+
+  useEffect(() => {
+    const thread = chatThread.current;
+    if (!thread) return;
+    thread.scrollTop = thread.scrollHeight;
+  }, [messages, chatOpen]);
 
   function addTopic(event: FormEvent) {
     event.preventDefault();
@@ -156,10 +185,10 @@ export function TeamulateDashboard() {
                 <Icon name="refresh" size={16} />
                 {refreshing ? "Refreshing" : "Refresh"}
               </button>
-              <a className="tu-btn tu-btn-skipper" href="#ask-skipper">
+              <button type="button" className="tu-btn tu-btn-skipper" onClick={openChat}>
                 <Icon name="spark" size={16} />
                 Ask Skipper
-              </a>
+              </button>
             </div>
           </div>
         </header>
@@ -567,6 +596,69 @@ export function TeamulateDashboard() {
           </section>
         </aside>
       </div>
+
+      <button
+        ref={chatLauncher}
+        type="button"
+        className="tu-skipper-fab"
+        aria-expanded={chatOpen}
+        aria-controls="skipper-chat"
+        onClick={() => (chatOpen ? closeChat() : openChat())}
+      >
+        <Icon name={chatOpen ? "close" : "spark"} size={18} />
+        {chatOpen ? "Close" : "Ask Skipper"}
+      </button>
+      {chatOpen ? (
+        <section id="skipper-chat" className="tu-chat" role="dialog" aria-labelledby="skipper-chat-title">
+          <header className="tu-chat-head">
+            <h2 id="skipper-chat-title">
+              <Icon name="spark" size={16} /> Ask Skipper
+            </h2>
+            <button type="button" className="tu-icon-btn" onClick={closeChat} aria-label="Close chat">
+              <Icon name="close" size={16} />
+            </button>
+          </header>
+          <div className="tu-thread tu-chat-thread" ref={chatThread} aria-live="polite">
+            {messages.length === 0 ? (
+              <p className="tu-chat-empty">Ask about traffic, topics, visibility, or the next useful action.</p>
+            ) : (
+              messages.map((message, index) => (
+                <article key={`${message.question}-${index}`}>
+                  <p className="tu-q">{message.question}</p>
+                  <p>{message.answer}</p>
+                </article>
+              ))
+            )}
+          </div>
+          <form className="tu-ask" onSubmit={onAsk}>
+            <label className="sr-only" htmlFor="skipper-chat-input">
+              Ask anything about Teamulate
+            </label>
+            <input
+              ref={chatInput}
+              id="skipper-chat-input"
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder="Ask anything about Teamulate…"
+            />
+            <button type="submit" className="tu-btn tu-btn-skipper" aria-label="Send">
+              <Icon name="arrow" size={16} />
+            </button>
+          </form>
+          {messages.length === 0 ? (
+            <ul className="tu-prompts tu-chat-prompts">
+              {skipperPrompts.slice(0, 4).map((prompt) => (
+                <li key={prompt}>
+                  <button type="button" onClick={() => ask(prompt)}>
+                    {prompt}
+                    <Icon name="chevron" size={14} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
 
       <dialog ref={topicDialog} className="tu-dialog" aria-labelledby={topicField}>
         <form onSubmit={addTopic}>

@@ -1038,3 +1038,91 @@ html[data-surface="ops"] .nav-dialog::backdrop {
     border-left: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
+
+.tu-skipper-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 18px 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #7d72ff, #5846f0);
+  color: white;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 650;
+  box-shadow:
+    0 14px 34px rgba(48, 36, 140, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+}
+
+.tu-skipper-fab:hover {
+  filter: brightness(1.06);
+}
+
+.tu-chat {
+  position: fixed;
+  right: 22px;
+  bottom: 88px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 32px));
+  max-height: min(540px, calc(100vh - 120px));
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(10, 16, 30, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+}
+
+.tu-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tu-chat-head h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.tu-chat-thread {
+  min-height: 72px;
+  overflow: auto;
+}
+
+.tu-chat-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.tu-chat-prompts {
+  margin-top: 12px;
+  overflow: auto;
+}
+
+@media (max-width: 640px) {
+  .tu-skipper-fab {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .tu-chat {
+    right: 14px;
+    bottom: 78px;
+  }
+}
