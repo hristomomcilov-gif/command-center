@@ -24,7 +24,7 @@ export function WeatherOutlook({
   return (
     <div className="outlook">
       <div className="outlook-now" aria-live="polite">
-        <WeatherGlyph kind={hour.kind} size={22} />
+        <WeatherGlyph kind={hour.kind} size={30} />
         <div>
           <p className="outlook-temp">
             {hour.temperatureLabel}

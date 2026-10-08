@@ -307,8 +307,12 @@ html[data-weather="snow"] .hero-veil {
 .today-body {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 28px;
   margin-top: 8px;
+}
+
+.today-body .event-list {
+  flex: 0 1 18rem;
 }
 
 .event-list,
@@ -391,18 +395,22 @@ html[data-weather="snow"] .hero-veil {
 }
 
 .outlook {
-  flex: none;
-  width: 210px;
-  padding: 12px 12px 10px;
-  border-radius: 16px;
-  background: rgba(8, 14, 24, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex: 0 1 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: min(100%, 440px);
+  margin-inline: auto;
+  padding: 2px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .outlook-now {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   color: #c48a3a;
 }
 
@@ -415,7 +423,7 @@ html[data-weather="snow"] .hero-veil {
 
 .outlook-temp {
   color: var(--ink);
-  font-size: 1.35rem;
+  font-size: 1.85rem;
   font-weight: 620;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -426,7 +434,7 @@ html[data-weather="snow"] .hero-veil {
 .outlook-rain,
 .outlook-open {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.92rem;
   font-weight: 560;
 }
 
@@ -440,8 +448,8 @@ html[data-weather="snow"] .hero-veil {
 
 .outlook-hours {
   display: flex;
-  gap: 3px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 14px;
 }
 
 .outlook-hours button {
@@ -463,14 +471,15 @@ html[data-weather="snow"] .hero-veil {
 .outlook-track {
   display: flex;
   align-items: flex-end;
-  height: 36px;
-  padding: 3px 3px 0;
+  height: 58px;
+  padding: 4px 5px 0;
 }
 
 .outlook-bar {
   display: block;
   width: 100%;
-  border-radius: 4px 4px 2px 2px;
+  min-width: 10px;
+  border-radius: 6px 6px 3px 3px;
   background: #e2b15a;
 }
 
@@ -484,8 +493,8 @@ html[data-weather="snow"] .hero-veil {
 
 .outlook-hour {
   display: block;
-  padding: 2px 0 4px;
-  font-size: 0.62rem;
+  padding: 6px 0 2px;
+  font-size: 0.78rem;
   font-weight: 650;
   letter-spacing: -0.02em;
 }
@@ -808,6 +817,8 @@ html[data-weather="snow"] .hero-veil {
   .outlook,
   .clear-panel {
     width: 100%;
+    max-width: none;
+    margin-inline: 0;
   }
 
   .clear-panel {
@@ -916,7 +927,11 @@ html[data-weather="snow"] .hero-veil {
 
   .today-body { align-items: stretch; }
   .clear-panel,
-  .outlook { width: 100%; }
+  .outlook {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
 
   .thought {
     grid-template-columns: 1fr;
@@ -931,7 +946,11 @@ html[data-weather="snow"] .hero-veil {
 @media (max-width: 520px) {
   .today-body { flex-direction: column; }
   .clear-panel,
-  .outlook { width: 100%; }
+  .outlook {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
   .story { grid-template-columns: 84px minmax(0, 1fr) auto; }
   .story-art { width: 84px; height: 72px; }
 }
