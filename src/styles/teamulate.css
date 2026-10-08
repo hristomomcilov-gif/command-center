@@ -558,11 +558,67 @@ html[data-surface="ops"] .nav-dialog::backdrop {
 
 .tu-acq-grid {
   grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
 }
 
-.tu-block + .tu-block {
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+.tu-search-stack {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  align-content: stretch;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.tu-inset {
+  container-type: inline-size;
+  container-name: inset;
+  min-width: 0;
+  padding: 14px 14px 12px;
+  border-radius: 14px;
+  background: rgba(5, 12, 24, 0.42);
+  border: 1px solid rgba(186, 206, 232, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.tu-inset-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px 12px;
+  margin-bottom: 12px;
+}
+
+.tu-inset-head h3 {
+  min-width: 0;
+}
+
+.tu-inset-head-stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.tu-inset-head-stack p,
+.tu-inset-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.tu-inset-meta {
+  flex: none;
+  margin-left: auto;
+  max-width: 16rem;
+  text-align: right;
+}
+
+.tu-keywords li > span:first-child {
+  color: var(--ink-soft);
 }
 
 .tu-hero-stat {
@@ -625,12 +681,18 @@ html[data-surface="ops"] .nav-dialog::backdrop {
   list-style: none;
 }
 
-.tu-stat-row,
-.tu-mini-stats {
+.tu-stat-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 12px;
+}
+
+.tu-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  margin-top: 2px;
 }
 
 .tu-ai-counts {
@@ -650,36 +712,66 @@ html[data-surface="ops"] .nav-dialog::backdrop {
   font-size: 1.05rem;
 }
 
-.tu-stat-row span,
-.tu-mini-stats span {
+.tu-stat-row li > span:not(.delta),
+.tu-mini-stats li > span:not(.delta) {
   display: block;
   color: var(--muted);
   font-size: 0.72rem;
 }
 
 .tu-keywords {
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tu-keywords-body {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .tu-keywords ul {
   display: grid;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 8px;
+  width: min(100%, 16.5rem);
+  margin-top: 0;
 }
 
-.tu-keywords li,
+.tu-keywords li {
+  display: grid;
+  grid-template-columns: 4.4rem 1.5rem auto;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 0.8rem;
+}
+
 .tu-fresh li,
 .tu-attention li {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
   align-items: center;
   font-size: 0.8rem;
 }
 
+.tu-keywords li strong,
+.tu-keywords .delta {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tu-keywords .delta {
+  margin-top: 0;
+}
+
+.rank-bars {
+  display: block;
+  width: 76px;
+  height: 96px;
+}
+
 .rank-bars rect {
   fill: #8d78f6;
-  opacity: 0.9;
 }
 
 .tu-table-scroll {
@@ -1004,38 +1096,36 @@ html[data-surface="ops"] .nav-dialog::backdrop {
   }
 }
 
-@container acq (min-width: 720px) {
-  .tu-acq-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-
-  .tu-acq-grid > .tu-block:first-child {
-    grid-column: 1 / -1;
-    padding-bottom: 4px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .tu-block + .tu-block {
-    padding-top: 0;
-    border-top: 0;
+@container inset (min-width: 300px) {
+  .tu-mini-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px 10px;
   }
 }
 
-@container acq (min-width: 1180px) {
+@container acq (min-width: 720px) {
   .tu-acq-grid {
-    grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.82fr) minmax(280px, 0.98fr);
+    grid-template-columns: 1fr 1fr;
   }
 
-  .tu-acq-grid > .tu-block:first-child {
+  .tu-acq-grid > .tu-inset:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@container acq (min-width: 1080px) {
+  .tu-acq-grid {
+    grid-template-columns: minmax(0, 1.28fr) minmax(300px, 0.96fr) minmax(320px, 1.02fr);
+  }
+
+  .tu-acq-grid > .tu-inset:first-child {
     grid-column: auto;
-    padding-bottom: 0;
-    border-bottom: 0;
   }
+}
 
-  .tu-block + .tu-block {
-    padding-left: 16px;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+@media (prefers-reduced-transparency: reduce) {
+  .tu-inset {
+    background: #121b2e;
   }
 }
 
