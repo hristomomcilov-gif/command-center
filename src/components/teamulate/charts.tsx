@@ -153,17 +153,23 @@ export function TrafficChart({
 
 export function RankBars({ values }: { values: number[] }) {
   const max = Math.max(...values, 1);
+  const width = 76;
+  const height = 96;
+  const barW = 12;
+  const gap = 6;
+  const total = values.length * barW + (values.length - 1) * gap;
+  const start = (width - total) / 2;
   return (
-    <svg className="rank-bars" viewBox="0 0 88 46" width="88" height="46" aria-hidden="true">
+    <svg className="rank-bars" viewBox={`0 0 ${width} ${height}`} width={width} height={height} aria-hidden="true">
       {values.map((value, index) => {
-        const height = (value / max) * 38;
+        const barH = Math.max((value / max) * (height - 8), 6);
         return (
           <rect
             key={index}
-            x={6 + index * 21}
-            y={42 - height}
-            width="12"
-            height={height}
+            x={start + index * (barW + gap)}
+            y={height - 2 - barH}
+            width={barW}
+            height={barH}
             rx="3"
           />
         );
