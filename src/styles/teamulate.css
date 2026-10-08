@@ -725,25 +725,32 @@ html[data-surface="ops"] .nav-dialog::backdrop {
 }
 
 .tu-keywords-body {
-  display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
-  gap: 16px;
+  display: flex;
   align-items: center;
+  gap: 18px;
 }
 
 .tu-keywords ul {
   display: grid;
   gap: 8px;
+  width: min(100%, 16.5rem);
   margin-top: 0;
 }
 
-.tu-keywords li,
+.tu-keywords li {
+  display: grid;
+  grid-template-columns: 4.4rem 1.5rem auto;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 0.8rem;
+}
+
 .tu-fresh li,
 .tu-attention li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 10px;
-  align-items: baseline;
+  align-items: center;
   font-size: 0.8rem;
 }
 
@@ -1089,9 +1096,10 @@ html[data-surface="ops"] .nav-dialog::backdrop {
   }
 }
 
-@container inset (min-width: 460px) {
+@container inset (min-width: 300px) {
   .tu-mini-stats {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px 10px;
   }
 }
 
