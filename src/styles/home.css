@@ -305,14 +305,15 @@ html[data-weather="snow"] .hero-veil {
 }
 
 .today-body {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(200px, 1fr);
   align-items: center;
-  gap: 28px;
+  gap: 28px 36px;
   margin-top: 8px;
 }
 
 .today-body .event-list {
-  flex: 0 1 18rem;
+  max-width: 22rem;
 }
 
 .event-list,
@@ -395,12 +396,10 @@ html[data-weather="snow"] .hero-veil {
 }
 
 .outlook {
-  flex: 0 1 440px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: min(100%, 440px);
-  margin-inline: auto;
+  justify-self: center;
+  width: min(100%, 520px);
   padding: 2px 0 0;
   border: 0;
   border-radius: 0;
@@ -810,15 +809,14 @@ html[data-weather="snow"] .hero-veil {
 
 @container (max-width: 520px) {
   .today-body {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     align-items: stretch;
   }
 
   .outlook,
   .clear-panel {
     width: 100%;
-    max-width: none;
-    margin-inline: 0;
+    justify-self: stretch;
   }
 
   .clear-panel {
@@ -925,12 +923,14 @@ html[data-weather="snow"] .hero-veil {
   .hero-clock { font-size: 2.35rem; }
   .hero-line { padding-top: 16px; font-size: 1.16rem; }
 
-  .today-body { align-items: stretch; }
+  .today-body {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
   .clear-panel,
   .outlook {
     width: 100%;
-    max-width: none;
-    margin-inline: 0;
+    justify-self: stretch;
   }
 
   .thought {
@@ -944,12 +944,11 @@ html[data-weather="snow"] .hero-veil {
 }
 
 @media (max-width: 520px) {
-  .today-body { flex-direction: column; }
+  .today-body { grid-template-columns: 1fr; }
   .clear-panel,
   .outlook {
     width: 100%;
-    max-width: none;
-    margin-inline: 0;
+    justify-self: stretch;
   }
   .story { grid-template-columns: 84px minmax(0, 1fr) auto; }
   .story-art { width: 84px; height: 72px; }
