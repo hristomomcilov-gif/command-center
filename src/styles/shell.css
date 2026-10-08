@@ -33,26 +33,16 @@
 }
 
 .wordmark {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 4px 8px 16px;
+  display: block;
+  width: 100%;
+  padding: 6px 4px 18px;
   text-decoration: none;
 }
 
-.wordmark strong {
+.wordmark img {
   display: block;
-  font-size: 1.02rem;
-  font-weight: 620;
-  letter-spacing: -0.03em;
-}
-
-.wordmark strong + span {
-  display: block;
-  margin-top: 1px;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 500;
+  width: 100%;
+  height: auto;
 }
 
 .nav {
@@ -113,6 +103,7 @@
 }
 
 .topbar .wordmark {
+  width: 168px;
   padding: 0;
 }
 
@@ -157,6 +148,7 @@
 }
 
 .dialog-head .wordmark {
+  width: min(210px, 68vw);
   padding-bottom: 8px;
 }
 

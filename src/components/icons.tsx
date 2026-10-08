@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { WeatherKind } from "@/lib/home/types";
 
 export type IconName =
@@ -231,28 +231,4 @@ export function WeatherGlyph({ kind, size = 18 }: { kind: WeatherKind; size?: nu
               ? "fog"
               : "cloud";
   return <Icon name={name} size={size} />;
-}
-
-export function Mark({ size = 36 }: { size?: number }) {
-  const id = `mark${useId().replace(/:/g, "")}`;
-  return (
-    <svg width={size} height={size} viewBox="0 0 36 36" aria-hidden="true" className="mark">
-      <defs>
-        <linearGradient id={id} x1="6" y1="2" x2="30" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#7fa4c6" />
-          <stop offset="1" stopColor="#2d4c68" />
-        </linearGradient>
-      </defs>
-      <rect width="36" height="36" rx="11" fill={`url(#${id})`} />
-      <path
-        d="M11 22.2 18 11.6l7 10.6"
-        fill="none"
-        stroke="white"
-        strokeWidth="2.1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M14.2 22.2h7.6" stroke="white" strokeWidth="2.1" strokeLinecap="round" />
-    </svg>
-  );
 }

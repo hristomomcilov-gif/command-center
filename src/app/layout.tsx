@@ -23,8 +23,8 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: {
-    default: "Teamulate",
-    template: "%s · Teamulate",
+    default: "Command Center",
+    template: "%s · Command Center",
   },
   description: "A calm, personal start to the day.",
 };
