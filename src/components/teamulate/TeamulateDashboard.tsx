@@ -256,8 +256,10 @@ export function TeamulateDashboard() {
               </div>
             </header>
             <div className="tu-acq-grid">
-              <div className="tu-block">
-                <h3>Website traffic</h3>
+              <article className="tu-inset">
+                <header className="tu-inset-head">
+                  <h3>Website traffic</h3>
+                </header>
                 <p className="tu-hero-stat">
                   <strong>265</strong>
                   <DeltaText delta={{ text: "27.4%", tone: "up" }} />
@@ -276,45 +278,49 @@ export function TeamulateDashboard() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="tu-block">
-                <h3>
-                  Organic search
-                  <small>GSC · {organicSearch.asOf}</small>
-                </h3>
-                <ul className="tu-mini-stats">
-                  {organicSearch.stats.map((stat) => (
-                    <li key={stat.label}>
-                      <strong>{stat.value}</strong>
-                      <span>{stat.label}</span>
-                      {stat.delta ? <DeltaText delta={stat.delta} /> : null}
-                    </li>
-                  ))}
-                </ul>
-                <div className="tu-keywords">
-                  <h3>
-                    Keyword visibility
-                    <small>GSC queries by top paid position</small>
-                  </h3>
-                  <RankBars values={keywordRanks.map((rank) => rank.value)} />
-                  <ul>
-                    {keywordRanks.map((rank) => (
-                      <li key={rank.label}>
-                        <span>{rank.label}</span>
-                        <strong>{rank.value}</strong>
-                        <DeltaText delta={rank.delta} />
+              </article>
+              <div className="tu-search-stack">
+                <article className="tu-inset">
+                  <header className="tu-inset-head">
+                    <h3>Organic search</h3>
+                    <span className="tu-inset-meta">GSC · {organicSearch.asOf}</span>
+                  </header>
+                  <ul className="tu-mini-stats">
+                    {organicSearch.stats.map((stat) => (
+                      <li key={stat.label}>
+                        <strong>{stat.value}</strong>
+                        <span>{stat.label}</span>
+                        {stat.delta ? <DeltaText delta={stat.delta} /> : null}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
+                <article className="tu-inset tu-keywords">
+                  <header className="tu-inset-head tu-inset-head-stack">
+                    <h3>Keyword visibility</h3>
+                    <p>GSC queries by top paid position</p>
+                  </header>
+                  <div className="tu-keywords-body">
+                    <RankBars values={keywordRanks.map((rank) => rank.value)} />
+                    <ul>
+                      {keywordRanks.map((rank) => (
+                        <li key={rank.label}>
+                          <span>{rank.label}</span>
+                          <strong>{rank.value}</strong>
+                          <DeltaText delta={rank.delta} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
               </div>
-              <div className="tu-block">
-                <h3>
-                  AI visibility
-                  <small>
+              <article className="tu-inset">
+                <header className="tu-inset-head">
+                  <h3>AI visibility</h3>
+                  <span className="tu-inset-meta">
                     {aiVisibility.promptsTested} prompts tested · {aiVisibility.uniquePrompts} unique
-                  </small>
-                </h3>
+                  </span>
+                </header>
                 <ul className="tu-ai-counts">
                   <li>
                     <strong>{aiVisibility.mentions}</strong> Mentions
@@ -351,7 +357,7 @@ export function TeamulateDashboard() {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </article>
             </div>
           </section>
 
