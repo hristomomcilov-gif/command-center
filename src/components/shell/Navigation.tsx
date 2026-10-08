@@ -1,19 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
-import { Icon, Mark } from "@/components/icons";
+import { Icon } from "@/components/icons";
 import { isCurrent, navGroups } from "@/components/shell/nav";
 
 function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Link href="/" className="wordmark" onClick={onNavigate}>
-      <Mark />
-      <span>
-        <strong>Teamulate</strong>
-        <span>Command Center</span>
-      </span>
+      <Image src="/brand/command-center.png" alt="Command Center" width={1480} height={524} priority />
     </Link>
   );
 }
