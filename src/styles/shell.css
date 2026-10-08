@@ -34,8 +34,9 @@
 
 .wordmark {
   display: block;
-  width: 100%;
-  padding: 6px 4px 18px;
+  width: 148px;
+  margin-left: 6px;
+  padding: 0 0 14px;
   text-decoration: none;
 }
 
@@ -103,7 +104,8 @@
 }
 
 .topbar .wordmark {
-  width: 168px;
+  width: 124px;
+  margin-left: 4px;
   padding: 0;
 }
 
@@ -148,7 +150,8 @@
 }
 
 .dialog-head .wordmark {
-  width: min(210px, 68vw);
+  width: 132px;
+  margin-left: 4px;
   padding-bottom: 8px;
 }
 
