@@ -2,7 +2,7 @@ import { HomeScreen } from "@/components/home/HomeScreen";
 import { loadHomeSources } from "@/lib/home/sources/load-home-sources";
 
 export const metadata = {
-  title: "Home",
+  title: "Command Center",
 };
 
 export default async function HomePage() {
